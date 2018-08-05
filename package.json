@@ -1,0 +1,22 @@
+{
+  "name": "attendance",
+  "version": "1.0.0",
+  "description": "attendance project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nfgueye/attendance.git"
+  },
+  "keywords": [
+    "attendance"
+  ],
+  "author": "Ndeye",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nfgueye/attendance/issues"
+  },
+  "homepage": "https://github.com/nfgueye/attendance#readme"
+}
