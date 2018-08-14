@@ -7,13 +7,15 @@ const EmployeeSchema = mongoose.Schema({
     },
     lastname:{type : String, required : true
     },
-    dateOfBirth: {type : String, required : true
+    matricule:{type : String
     },
-    telephone:{type : String, required : true
+    dateOfBirth: {type : String, required : true
     },
     username:{type : String, required : true
     },
     password:{type : String, required : true
+    },
+    telephone:{type : String, required : true
     },
     service:{type : String, required : true
     },
@@ -21,8 +23,7 @@ const EmployeeSchema = mongoose.Schema({
     },
     statut:{type : String
     },
-    matricule:{type : String
-    },
+   
     activite:{type : String}
 })
 const employee = module.exports = mongoose .model ('Employee', EmployeeSchema);

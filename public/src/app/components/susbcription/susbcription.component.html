@@ -1,0 +1,65 @@
+<mat-card style="text-align: center;">
+  <h2> Merci de remplir correctement le formulaire d'inscription</h2>
+  <!--<p>(L'adresse email que vous donnez et le mot de passe seront vos identifiants pour vous connecter et accéder à votre profil.
+    Merci de bien noter votre email et votre mot de passe.)
+  </p><br/> -->
+  <mat-card  class="example-form" >
+      <mat-card-title>
+        Formulaire  d'inscription
+      </mat-card-title>
+  
+    <form   [formGroup]="inscriptionForm" (ngSubmit)="subscribe()">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Nom" formControlName="lastname" >
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Prénom" formControlName="firstname">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Matricule" formControlName="matricule">
+        </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Date de naissance" formControlName="dateOfBirth" >
+      </mat-form-field>
+      <mat-form-field class="example-full-width ">
+          <input matInput placeholder="Email"  formControlName="email">
+        </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Mot de passe" formControlName="password" >
+      </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <span matPrefix>+221 &nbsp;</span>
+          <input type="tel" matInput placeholder="Téléphone" formControlName="call">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Service"  formControlName="service">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Fonction"  formControlName="fonction">
+        </mat-form-field> 
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Statut"  formControlName="statut">
+          </mat-form-field> 
+          <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Décrire votre activité"  formControlName="activite"> </textarea> 
+          </mat-form-field> 
+            <div *ngIf= "!pictureTaken && !picture" ><button mat-button id="snap" (click)="takePicture()">Prendre une photo d'identification</button></div>
+              <div *ngIf=picture><ul>
+                    <li *ngFor="let c of captures">
+                        <img src="{{ c }}" height="300" width="300" />
+                    </li>
+                </ul>
+                <div><button mat-button id="snap" (click)="reprendre()">Reprendre la photo</button></div>
+              </div>      
+          <div *ngIf=pictureTaken>
+          <div style="background-color: #F0F0F0;"><video #video id="video" width="300" height="300" autoplay></video></div>
+          <div><button mat-button id="snap" (click)="capture()">Prendre une photo</button></div>
+          <canvas #canvas id="canvas" width="300" height="300"></canvas>
+          </div>
+        
+        <br />
+      <div style="text-align: right;"> <button  mat-button>Soumettre</button> </div>
+    </form>
+  </mat-card> 
+  </mat-card>
+  

@@ -2,7 +2,7 @@ const   express = require ('express'),
         router = express.Router(),
         passport = require('passport'),
         jwt = require ('jsonwebtoken'),
-        User = require ('../models/user'),
+        Employee = require ('../models/employee'),
         config = require ('../config/database');
 
 router.post('/inscription', (req,res,next)  => {
@@ -10,8 +10,8 @@ router.post('/inscription', (req,res,next)  => {
         firstname:req.body.firstname,
         lastname:req.body.lastname,
         dateOfBirth:req.body.dateOfBirth,
-        telephone:req.body.telephone,
-        username:req.body.username,
+        telephone:req.body.call,
+        username:req.body.email,
         password:req.body.password,
         service: req.body.service,
         fonction:req.body.fonction,
@@ -20,7 +20,7 @@ router.post('/inscription', (req,res,next)  => {
         activite: req.body.activite
     })
     console.log (newEmployee);
-    User.addUser(newEmployee, (err,employee) =>{
+    Employee.addEmployee(newEmployee, (err,employee) =>{
         if (err){
             res.json({succes:false,msg:'Failed to register employee '});
         }else{
@@ -31,12 +31,12 @@ router.post('/inscription', (req,res,next)  => {
 router.post('/login', (req,res,next)  => {
     const username = req.body.username;
     const password = req.body.password;
-    User.getEmployeeByUsername(username, (err,employee) => {
+    Employee.getEmployeeByUsername(username, (err,employee) => {
         if (err) throw err;
         if(!employee){
             return res.json({succes: false, msg:'Employee not found'});
         }else{
-            User.comparePassword(password,employee.password, (err,isMatch) =>{
+            Employee.comparePassword(password,employee.password, (err,isMatch) =>{
                 if(err) throw err;
                 if(isMatch){
                     const token = jwt.sign({data:employee},config.secret,{

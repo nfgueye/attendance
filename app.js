@@ -6,7 +6,7 @@ const   express = require ('express'),
         passport = require ('passport'),
         app = express(),
         port = 3000,
-        employees = require('./routes/employees'),
+        employee = require('./routes/employee'),
         config = require ('./config/database');
 
 mongoose.connect(config.database);
@@ -23,12 +23,11 @@ app.use( bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 require ('./config/passport')(passport);
-
-app.use(express.static(path.join(__dirname, 'public')))
-app.use('/employees',employees);
-app.get('/', (rep, res)=>{
-    res.send('Rendu du serveur')
-})
+app.use(express.static(path.join(__dirname, 'public/dist/public')))
+app.use('/employee',employee);
+app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname,'public/dist/index.html')); // load our public/index.html file
+});
 app.listen( port, ()=>{
     console.log('Server started on port '+port);
 
